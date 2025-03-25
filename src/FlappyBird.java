@@ -4,7 +4,7 @@ import java.util.ArrayList;     //for storing pipes
 import java.util.Random;        //For placing pipes at random place
 import javax.swing.*;
 
-public class FlappyBird extends JPanel{
+public class FlappyBird extends JPanel implements ActionListener{
     int boardWidth = 360;
     int boardHeight = 640;
 
@@ -19,6 +19,7 @@ public class FlappyBird extends JPanel{
     int birdY = boardHeight/2;
     int birdWidth = 34;
     int birdHeight = 24;
+
 
     class Bird{
         int x = birdX;
@@ -35,6 +36,8 @@ public class FlappyBird extends JPanel{
     //game logic
     Bird bird;
 
+    Timer gameLoop;
+
 
     FlappyBird(){
         setPreferredSize(new Dimension(boardWidth, boardHeight));
@@ -48,6 +51,9 @@ public class FlappyBird extends JPanel{
 
         //bird
         bird = new Bird(birdImg);
+
+        //game timer
+        gameLoop = new Timer(1000/60, this);
     }
 
     public void paintComponent(Graphics g){
@@ -61,5 +67,10 @@ public class FlappyBird extends JPanel{
 
         //bird
         g.drawImage(bird.img, bird.x, bird.y, bird.width, bird.height, null);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
     }
 }
