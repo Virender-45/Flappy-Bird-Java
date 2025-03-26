@@ -4,7 +4,7 @@ import java.util.ArrayList;     //for storing pipes
 import java.util.Random;        //For placing pipes at random place
 import javax.swing.*;
 
-public class FlappyBird extends JPanel implements ActionListener{
+public class FlappyBird extends JPanel implements ActionListener, KeyListener{
     int boardWidth = 360;
     int boardHeight = 640;
 
@@ -35,7 +35,7 @@ public class FlappyBird extends JPanel implements ActionListener{
 
     //game logic
     Bird bird;
-    int velocityY = -6;      //we only move bird up and down
+    int velocityY = 0;      //we only move bird up and down
     int gravity = 1;
 
 
@@ -45,6 +45,9 @@ public class FlappyBird extends JPanel implements ActionListener{
     FlappyBird(){
         setPreferredSize(new Dimension(boardWidth, boardHeight));
 //        setBackground(Color.blue);
+
+        setFocusable(true);
+        addKeyListener(this);
 
         //load Images
         backgroundImg = new ImageIcon(getClass().getResource("./flappybirdbg.png")).getImage();
@@ -86,4 +89,18 @@ public class FlappyBird extends JPanel implements ActionListener{
         move();
         repaint();
     }
+
+
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_SPACE){
+            velocityY = -9;
+        }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {}
+    @Override
+    public void keyReleased(KeyEvent e) {}
 }
